@@ -1,45 +1,58 @@
 var questionInput = document.getElementById("question")
+var timeEl = document.getElementById("timer")
 var answerA = document.getElementById("A")
 var answerB = document.getElementById("B")
 var answerC = document.getElementById("C")
 var answerD = document.getElementById("D")
+var startBtn = document.getElementById("startBtn")
+var questions = document.querySelector(".questions")
+var intro = document.querySelector(".intro")
 
-init()
-
+// init()
+function startGame() {
+  questions.setAttribute("style", "display:block")
+  intro.setAttribute("style", "display:none")
+}
 // event listener for start game
-
+setTime()
 // timer starts
 function setTime() {
   // Sets interval in variable
-  var timerInterval = setInterval(function() {
+  var timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = "You have " + secondsLeft + "seconds left!";
-
-    if(secondsLeft === 0) {
+    if (secondsLeft === 0) {
       clearInterval(timerInterval);
       timeUp();
     }
-
   }, 1000);
 }
-// question and answers populate
 
+function chooseQ() {
+  for (let i = 0; i < questionsArray.length; i++) {
+    // const qArray = questionsArray[i].values();
+    document.getElementById("question").innerHTML = [j].Question;
+    document.getElementById("A").innerHTML = [j].A;
+    document.getElementById("B").innerHTML = [j].B;
+    document.getElementById("C").innerHTML = [j].C;
+    document.getElementById("D").innerHTML = [j].D;
+  }
+  // for (let j = 0; j < qArray.length; j++) {
+  //   document.getElementById("question").innerHTML = [j].Question;
+  //   document.getElementById("A").innerHTML = [j].A;
+  //   document.getElementById("B").innerHTML = [j].B;
+  //   document.getElementById("C").innerHTML = [j].C;
+  //   document.getElementById("D").innerHTML = [j].D;
+  // }
 
-// correct answer gives new question
-
-
-
-// wrong answer subtracts time AND gives new question
-
-
-
+}
 //when questions answered or timer === 0 game over
 
-
-
 // save initials and score
+var questionIndex = 0
+var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
 
-var question1 = {
+const question1 = {
   Question: "What kind of primitive type refers to a true or false value?",
   A: "Boolean",
   B: "Variable",
@@ -47,15 +60,15 @@ var question1 = {
   D: "Number"
 };
 
-var question2 = {
-Question: "What holds a collection of items, referred to by indices?",
-A: "String",
-B: "Boolean",
-C: "Array",
-D: "List"
+const question2 = {
+  Question: "What holds a collection of items, referred to by indices?",
+  A: "String",
+  B: "Boolean",
+  C: "Array",
+  D: "List"
 }
 
-var question3 = {
+const question3 = {
   Question: "What is the term for using JavaScript to access specific parts of the HTML?",
   A: "Third party API",
   B: "Traversing the DOM",
@@ -63,7 +76,7 @@ var question3 = {
   D: "Navigating the HTML"
 }
 
-var question4 = {
+const question4 = {
   Question: "What is a section of code that runs repeatedly until conditions are met?",
   A: "Loop",
   B: "Object",
@@ -71,7 +84,7 @@ var question4 = {
   D: "Variable"
 }
 
-var question5 = {
+const question5 = {
   Question: "What is used to create an arbitrary name given to a specific piece of information?",
   A: "Variable",
   B: "String",
@@ -79,7 +92,7 @@ var question5 = {
   D: "Array"
 }
 
-var question6 = {
+const question6 = {
   Question: "What allows elements within HTML to arrange themselves according to element size and space in a parent element?",
   A: "Flow-square",
   B: "Justify-content",
@@ -87,10 +100,12 @@ var question6 = {
   D: "Flex-box"
 }
 
-var question7 = {
-Question: "What is it called when an app rescales according to screen size?",
-A: "Scaling Design",
-B: "Media Rescaling",
-C: "Responsive Design",
-D: "Screen resizing"
+const question7 = {
+  Question: "What is it called when an app rescales according to screen size?",
+  A: "Scaling Design",
+  B: "Media Rescaling",
+  C: "Responsive Design",
+  D: "Screen resizing"
 }
+
+startBtn.addEventListener("click", startGame)

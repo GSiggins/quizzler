@@ -12,26 +12,43 @@
 
 <body>
 
-    <header class="header"></header>
-    <p 
+    <header class="header">
+        <p href="#">High Scores!</p>
+        <p id="timer"></p>
+    </header>
     <div>
         <h1>Coding Quiz</h1>
     </div>
 
     <section>
         <div class="box">
-            <section id="intro"></section>
-            <p id="question"></p>
-            <div>
-                <button id="A">answer 1</button>
-                <button id="B">answer 2</button>
-                <button id="C">answer 3</button>
-                <button id="D">answer 4</button>
+            <div class="intro">
+                <h1>Welcome to the coding quiz!</h1>
+                <p>Welcome to our timed coding quiz that will test you on the basics of JavaScript
+                    and give you a score at the end! For each wrong answer input, 3 seconds will be
+                    subtracted from the time remaining.
+                </p>
+                <button id="startBtn">Start!</button>
+            </div>
+            <div id="correct">
+                <h2>Correct!</h2>
+            </div>
+            <div id="incorrect">
+                <h2>Incorrect! -3 seconds</h2>
+            </div>
+            <div class="questions">
+                <p id="question"></p>
+                <div>
+                    <button id="A">answer 1</button>
+                    <button id="B">answer 2</button>
+                    <button id="C">answer 3</button>
+                    <button id="D">answer 4</button>
+                </div>
             </div>
             <h2 id="result"></h2>
         </div>
     </section>
 </body>
-<script src="assets/js/script.js"></script>
+<script src="assets/Javascript/script.js"></script>
 
 </html>

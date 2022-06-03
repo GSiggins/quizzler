@@ -5,6 +5,12 @@ html {
     line-height: 1.5;
 }
 
+header {
+    font-size: 32px;
+    display: inline;
+    
+}
+
 h1 {
     font-family: 'Courier New', Courier, monospace;
     font-weight: 900;
@@ -22,15 +28,6 @@ section > div {
     margin: 25px auto; 
 }
 
-.box div {
-    flex-direction:column;
-    align-items: space-between;
-    align-items: flex-start;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 100px;
-}
-
 button {  
     margin: 20px 20px 20px 200px;
     flex: 1 0 100px;
@@ -42,6 +39,25 @@ button {
     max-width: 200px;
     font-size: 36px;
 }
+
+.box div {
+    flex-direction:column;
+    align-items: space-between;
+    align-items: flex-start;
+    /* display: flex; */
+    flex-wrap: wrap;
+    margin-bottom: 100px;
+}
+
+.questions {
+    display: none;
+}
+
+#incorrect,
+#correct {
+    display: none;
+}
+
 
 #question {
     margin: 20px;
