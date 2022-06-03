@@ -7,36 +7,47 @@ var answerD = document.getElementById("D")
 var startBtn = document.getElementById("startBtn")
 var questions = document.querySelector(".questions")
 var intro = document.querySelector(".intro")
+var question = document.getElementById("question")
 
 // init()
 function startGame() {
-  questions.setAttribute("style", "display:block")
-  intro.setAttribute("style", "display:none")
+  questions.setAttribute("style", "display:flex");
+  intro.setAttribute("style", "display:none");
+  setTime();
+  displayQ(chooseQ());
 }
-// event listener for start game
-setTime()
-// timer starts
+
 function setTime() {
-  // Sets interval in variable
+  var secondsLeft = 35
   var timerInterval = setInterval(function () {
     secondsLeft--;
-    timeEl.textContent = "You have " + secondsLeft + "seconds left!";
+    timeEl.textContent = "You have " + secondsLeft + " seconds left!";
     if (secondsLeft === 0) {
       clearInterval(timerInterval);
       timeUp();
     }
   }, 1000);
 }
-
+// event listener for start game
 function chooseQ() {
-  for (let i = 0; i < questionsArray.length; i++) {
-    // const qArray = questionsArray[i].values();
-    document.getElementById("question").innerHTML = [j].Question;
-    document.getElementById("A").innerHTML = [j].A;
-    document.getElementById("B").innerHTML = [j].B;
-    document.getElementById("C").innerHTML = [j].C;
-    document.getElementById("D").innerHTML = [j].D;
+  // for (let i = 0; i < questionsArray.length; i++) {
+    const chosenQIndex = Math.floor(Math.random() * questionsArray.length)
+    console.log(chosenQIndex)
+  // }
+  return questionsArray[chosenQIndex]
+}
+
+function displayQ(chosenQ) {
+    // const qArray = Object.values(chosenQ);
+    question.textContent = chosenQ.Question;
+    answerA.textContent = chosenQ.A;
+    answerB.textContent = chosenQ.B;
+    answerC.textContent = chosenQ.C;
+    answerD.textContent = chosenQ.D;
   }
+
+
+
   // for (let j = 0; j < qArray.length; j++) {
   //   document.getElementById("question").innerHTML = [j].Question;
   //   document.getElementById("A").innerHTML = [j].A;
@@ -45,12 +56,9 @@ function chooseQ() {
   //   document.getElementById("D").innerHTML = [j].D;
   // }
 
-}
 //when questions answered or timer === 0 game over
 
 // save initials and score
-var questionIndex = 0
-var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
 
 const question1 = {
   Question: "What kind of primitive type refers to a true or false value?",
@@ -107,5 +115,12 @@ const question7 = {
   C: "Responsive Design",
   D: "Screen resizing"
 }
+
+startBtn.addEventListener("click", startGame)
+
+var questionIndex = 0
+var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
+
+
 
 startBtn.addEventListener("click", startGame)
