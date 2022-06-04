@@ -17,8 +17,8 @@ var buttons = document.querySelector('#buttons')
 
 // init()
 function startGame() {
-  questions.setAttribute("style", "display:flex");
-  intro.setAttribute("style", "display:none");
+  questions.style.display = 'block';
+  intro.style.display = 'none';
   setTime();
   displayQ(chooseQ());
 }
@@ -59,9 +59,9 @@ function displayQ(chosenQ, chosenQIndex) {
 
 //when questions answered or timer === 0 game over
 function timeUp(gameOver, questions) {
-  gameOver.setAttribute("style", "display:block");
-  questions.setAttribute("style", "display:none");
-  setTimeout(gameOver.setAttribute("style", "display:none"), questions.setAttribute("style", "display:block"), 5000);
+  gameOver.style.display = 'block';
+  questions.style.display = 'none';
+  setTimeout(gameOver.style.display = 'none', questions.style.display = 'block', 5000);
   return;
 }
 
@@ -77,21 +77,20 @@ function checkAnswer(correct, incorrect, buttons) {
   var checkCorrect = this.dataset.correct;
   console.log(this.dataset.correct);
   if (checkCorrect === 'true') {
-    correct(checkCorrect, correct, incorrect, buttons);
-    function correct(checkCorrect) {
-      correct.setAttribute("style", "display:block");
-      buttons.setAttribute("style", "display:none");
-      setTimeout(correct.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
+    correct();
+    function correct() {
+      correct.style.display = 'block';
+      buttons.style.display = 'none';
+      setTimeout(correct.style.display = 'none', buttons.style.display = 'block', 2000);
       displayQ(chooseQ());
       return;
     }
   } else {
     incorrect(checkCorrect);
-    function incorrect(incorrect, buttons) {
-
-      incorrect.setAttribute("style", "display:block");
-      buttons.setAttribute("style", "display:none");
-      setTimeout(incorrect.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
+    function incorrect() {
+      incorrect.style.display = 'block';
+      buttons.style.display = 'none';
+      setTimeout(incorrect.style.display = 'none', buttons.style.display = 'block', 2000);
       secondsLeft - 3;
       displayQ(chooseQ());
       return;
