@@ -57,7 +57,7 @@ function displayQ(chosenQ, chosenQIndex) {
 }
 
 //when questions answered or timer === 0 game over
-function timeUp () {
+function timeUp() {
   gameOver.setAttribute("style", "display:block");
   questions.setAttribute("style", "display:none");
   setTimeout(gameOver.setAttribute("style", "display:none"), questions.setAttribute("style", "display:block"), 5000);
@@ -76,27 +76,23 @@ function checkAnswer() {
   console.log(this.dataset.correct);
   var checkCorrect = this.dataset.correct;
   if (checkCorrect === 'true') {
-    correct();
+    correct(checkCorrect);
     function correct(checkCorrect) {
-      if (checkCorrect === 'true') {
       correct.setAttribute("style", "display:block");
       buttons.setAttribute("style", "display:none");
       setTimeout(correct.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
       displayQ(chooseQ());
       return;
     }
-  }
   } else {
-    incorrect();
-    function incorrect(checkCorrect) {
-      if (checkCorrect === 'false') {
+    incorrect(checkCorrect);
+    function incorrect() {
       incorrect.setAttribute("style", "display:block");
       buttons.setAttribute("style", "display:none");
       setTimeout(incorrect.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
       secondsLeft - 3;
       displayQ(chooseQ());
       return;
-      }
     }
   }
 }
