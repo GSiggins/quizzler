@@ -25,12 +25,13 @@ section > div {
     border-radius: 45px;
     background-color: bisque;
     width: 90%;
-    min-height: 400px;
+    min-height: 200px;
     margin: 25px auto; 
 }
 
 button {  
-    margin: 20px 20px 20px 200px;
+    margin: 20px 20px 20px 20px;
+    justify-content: center;
     flex: 1 0 100px;
     border: 1px solid gray;
     border-radius: 5px;
@@ -66,15 +67,23 @@ button {
     display: none;
 }
 
+#game-over h2 {
+    font-size: 96px;
+    display: none;
+    text-align: center;
+}
+
+
 
 #question {
     margin: 50px;
+    padding: 20px;
     flex: 3 0 100px;
     border: 1px solid gray;
     border-radius: 45px;
     box-shadow: 5px 5px 5px black;
     background-color: beige;
-    min-height: 300px;
+    min-height: 100px;
     min-width: 90%;
     font-size: 36px;
     text-align: center;
