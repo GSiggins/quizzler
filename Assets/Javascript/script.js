@@ -12,8 +12,7 @@ var buttons = document.getElementById('buttons')
 var gameOver = document.getElementById('game-over')
 var correct = document.getElementById('correct')
 var incorrect = document.getElementById('incorrect')
-var questionIndex = 0
-var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
+
 
 // init()
 function startGame() {
@@ -54,31 +53,30 @@ function displayQ(chosenQ, chosenQIndex) {
 }
 
 //when questions answered or timer === 0 game over
-function timeUp () {
-  gameOver.setAttribute("style", "display:block");
-  questions.setAttribute("style", "display:none");
-  setTimeout(gameOver.setAttribute("style", "display:none"), questions.setAttribute("style", "display:block"), 5000);
-  return;
-}
+// function timeUp () {
+//   gameOver.setAttribute("style", "display:block");
+//   questions.setAttribute("style", "display:none");
+//   setTimeout(gameOver.setAttribute("style", "display:none"), questions.setAttribute("style", "display:block"), 5000);
+//   return;
+// }
 
-function checkAnswer(event)
+// function checkAnswer(event)
 
 // save initials and score
-function correct() {
-  correct.setAttribute("style", "display:block");
-  buttons.setAttribute("style", "display:none");
-  setTimeout(correct.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
-  return;
-}
+// function correct() {
+//   correct.setAttribute("style", "display:block");
+//   buttons.setAttribute("style", "display:none");
+//   setTimeout(correct.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
+//   return;
+// }
 
-function incorrect(secondsLeft) {
-  incorrect.setAttribute("style", "display:block");
-  buttons.setAttribute("style", "display:none");
-  setTimeout(incorrect.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
-  secondsLeft - 3;
-  return;
-}
-
+// function incorrect(secondsLeft) {
+//   incorrect.setAttribute("style", "display:block");
+//   buttons.setAttribute("style", "display:none");
+//   setTimeout(incorrect.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
+//   secondsLeft - 3;
+//   return;
+// }
 
 
 const question1 = {
@@ -138,5 +136,8 @@ const question7 = {
 }
 
 startBtn.addEventListener("click", startGame)
-buttons.addEventListener("click", checkAnswer)
-startBtn.addEventListener("click", startGame)
+
+var questionIndex = 0
+var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
+
+// buttons.addEventListener("click", checkAnswer)
