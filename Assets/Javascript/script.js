@@ -74,24 +74,27 @@ function timeUp () {
 
 function checkAnswer() {
   console.log(this.dataset.correct);
-  if (this.dataset.correct === true) {
+  var checkCorrect = this.dataset.correct;
+  if (checkCorrect === 'true') {
     correct();
-    function correct() {
-      if (this.dataset.correct === true) {
+    function correct(checkCorrect) {
+      if (checkCorrect === 'true') {
       correct.setAttribute("style", "display:block");
       buttons.setAttribute("style", "display:none");
       setTimeout(correct.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
+      displayQ(chooseQ());
       return;
     }
   }
   } else {
     incorrect();
-    function incorrect() {
-      if (this.dataset.correct === false) {
+    function incorrect(checkCorrect) {
+      if (checkCorrect === 'false') {
       incorrect.setAttribute("style", "display:block");
       buttons.setAttribute("style", "display:none");
       setTimeout(incorrect.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
       secondsLeft - 3;
+      displayQ(chooseQ());
       return;
       }
     }
