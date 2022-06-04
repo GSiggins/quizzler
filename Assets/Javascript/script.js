@@ -8,17 +8,15 @@ var startBtn = document.getElementById("startBtn")
 var questions = document.querySelector(".questions")
 var intro = document.querySelector(".intro")
 var question = document.querySelector("#question")
-var buttons = document.querySelector('#buttons')
-var incorrect = document.querySelector('#incorrect')
-var buttons = document.querySelector('#buttons')
-var gameOver = document.querySelector('#game-over')
-var correct = document.querySelector('#correct')
-var buttons = document.querySelector('#buttons')
+var incorrect = document.getElementById('incorrect')
+var gameOver = document.getElementById('game-over')
+var correct = document.getElementById('correct')
+var buttons = document.getElementById('buttons')
 
 // init()
 function startGame() {
-  questions.style.display = 'block';
-  intro.style.display = 'none';
+  document.querySelector(".questions").style.display = 'block';
+  document.querySelector("#intro").style.display = 'none';
   setTime();
   displayQ(chooseQ());
 }
@@ -59,9 +57,9 @@ function displayQ(chosenQ, chosenQIndex) {
 
 //when questions answered or timer === 0 game over
 function timeUp(gameOver, questions) {
-  gameOver.style.display = 'block';
-  questions.style.display = 'none';
-  setTimeout(gameOver.style.display = 'none', questions.style.display = 'block', 5000);
+  document.getElementById('game-over').style.display = 'block';
+  document.querySelector(".questions").style.display = 'none';
+  setTimeout(document.getElementById('game-over').style.display = 'none', document.querySelector(".questions").style.display = 'block', 5000);
   return;
 }
 
@@ -79,18 +77,18 @@ function checkAnswer(correct, incorrect, buttons) {
   if (checkCorrect === 'true') {
     correct();
     function correct() {
-      correct.style.display = 'block';
-      buttons.style.display = 'none';
-      setTimeout(correct.style.display = 'none', buttons.style.display = 'block', 2000);
+      document.getElementById('correct').style.display = 'block';
+      document.querySelector(".questions").style.display = 'none';
+      setTimeout(document.getElementById('correct').style.display = 'none', document.querySelector(".questions").style.display = 'block', 2000);
       displayQ(chooseQ());
       return;
     }
   } else {
     incorrect(checkCorrect);
     function incorrect() {
-      incorrect.style.display = 'block';
-      buttons.style.display = 'none';
-      setTimeout(incorrect.style.display = 'none', buttons.style.display = 'block', 2000);
+      document.getElementById('incorrect').style.display = 'block';
+      document.querySelector(".questions").style.display = 'none';
+      setTimeout(document.getElementById('incorrect').style.display = 'none', document.querySelector(".questions").style.display = 'block', 2000);
       secondsLeft - 3;
       displayQ(chooseQ());
       return;

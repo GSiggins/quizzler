@@ -22,7 +22,7 @@
 
     <section>
         <div class="box">
-            <div class="intro">
+            <div id="intro">
                 <h2>Welcome to the coding quiz!</h2>
                 <p>Welcome to our timed coding quiz that will test you on the basics of JavaScript
                     and give you a score at the end! For each wrong answer input, 3 seconds will be
@@ -30,22 +30,22 @@
                 </p>
                 <button id="startBtn">Start!</button>
             </div>
-            <div class="questions hide">
+            <div id="incorrect">
+                <h3>Incorrect! -3 seconds</h3>
+            </div>
+            <div id="correct">
+                <h3>Correct!</h3>
+            </div>
+            <div id="game-over">
+                <h3>Game Over!</h3>
+            </div>
+            <div class="questions">
                 <p id="question"></p>
                 <div id="buttons">
                     <button id="A"></button>
                     <button id="B"></button>
                     <button id="C"></button>
                     <button id="D"></button>
-                </div>
-                <div id="incorrect">
-                    <h3>Incorrect! -3 seconds</h3>
-                </div>
-                <div id="correct">
-                    <h3>Correct!</h3>
-                </div>
-                <div id="game-over">
-                    <h3>Game Over!</h3>
                 </div>
             </div>
             <h2 id="result"></h2>
