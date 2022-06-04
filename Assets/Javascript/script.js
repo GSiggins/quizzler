@@ -9,9 +9,9 @@ var questions = document.querySelector(".questions")
 var intro = document.querySelector(".intro")
 var question = document.getElementById("question")
 var buttons = document.getElementById('buttons')
-var gameOver = document.getElementById('game-over')
-var correct = document.getElementById('correct')
-var incorrect = document.getElementById('incorrect')
+var gameOver = document.querySelector('game-over')
+var correct = document.querySelector('correct')
+var incorrect = document.querySelector('incorrect')
 
 
 // init()
@@ -57,33 +57,46 @@ function displayQ(chosenQ, chosenQIndex) {
 }
 
 //when questions answered or timer === 0 game over
-// function timeUp () {
-//   gameOver.setAttribute("style", "display:block");
-//   questions.setAttribute("style", "display:none");
-//   setTimeout(gameOver.setAttribute("style", "display:none"), questions.setAttribute("style", "display:block"), 5000);
-//   return;
-// }
+function timeUp () {
+  gameOver.setAttribute("style", "display:block");
+  questions.setAttribute("style", "display:none");
+  setTimeout(gameOver.setAttribute("style", "display:none"), questions.setAttribute("style", "display:block"), 5000);
+  return;
+}
+
+
+
+// Displays a correct message and moves to the next question
+
+
+// Displays an incorrect message and moves to the next question
+
 
 function checkAnswer() {
   console.log(this.dataset.correct);
+  if (this.dataset.correct === true) {
+    correct();
+    function correct() {
+      if (this.dataset.correct === true) {
+      correct.setAttribute("style", "display:block");
+      buttons.setAttribute("style", "display:none");
+      setTimeout(correct.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
+      return;
+    }
+  }
+  } else {
+    incorrect();
+    function incorrect() {
+      if (this.dataset.correct === false) {
+      incorrect.setAttribute("style", "display:block");
+      buttons.setAttribute("style", "display:none");
+      setTimeout(incorrect.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
+      secondsLeft - 3;
+      return;
+      }
+    }
+  }
 }
-
-// Displays a correct message and moves to the next question
-// function correct() {
-//   correct.setAttribute("style", "display:block");
-//   buttons.setAttribute("style", "display:none");
-//   setTimeout(correct.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
-//   return;
-// }
-
-// Displays an incorrect message and moves to the next question
-// function incorrect(secondsLeft) {
-//   incorrect.setAttribute("style", "display:block");
-//   buttons.setAttribute("style", "display:none");
-//   setTimeout(incorrect.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
-//   secondsLeft - 3;
-//   return;
-// }
 
 
 const question1 = {

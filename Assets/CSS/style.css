@@ -63,7 +63,8 @@ button {
 }
 
 #incorrect,
-#correct {
+#correct,
+#game-over {
     display: none;
 }
 
