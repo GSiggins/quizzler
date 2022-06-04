@@ -36,18 +36,22 @@ function setTime() {
 
 // event listener for start game
 function chooseQ() {
-  const chosenQIndex = Math.floor(Math.random() * questionsArray.length)
-  console.log(chosenQIndex)
-  return questionsArray[chosenQIndex]
+  const chosenQIndex = Math.floor(Math.random() * questionsArray.length);
+  console.log(chosenQIndex);
+  return questionsArray[chosenQIndex];
 }
 
 function displayQ(chosenQ, chosenQIndex) {
   // const qArray = Object.values(chosenQ);
   question.textContent = chosenQ.Question;
   answerA.textContent = chosenQ.A.answerText;
+  answerA.dataset.correct = chosenQ.A.correct;
   answerB.textContent = chosenQ.B.answerText;
+  answerB.dataset.correct = chosenQ.B.correct;
   answerC.textContent = chosenQ.C.answerText;
+  answerC.dataset.correct = chosenQ.C.correct;
   answerD.textContent = chosenQ.D.answerText;
+  answerD.dataset.correct = chosenQ.D.correct;
   questionsArray.splice(chosenQIndex, 1);
   console.log(questionsArray);
 }
@@ -60,9 +64,11 @@ function displayQ(chosenQ, chosenQIndex) {
 //   return;
 // }
 
-// function checkAnswer(event)
+function checkAnswer() {
+  console.log(this.dataset.correct);
+}
 
-// save initials and score
+// Displays a correct message and moves to the next question
 // function correct() {
 //   correct.setAttribute("style", "display:block");
 //   buttons.setAttribute("style", "display:none");
@@ -70,6 +76,7 @@ function displayQ(chosenQ, chosenQIndex) {
 //   return;
 // }
 
+// Displays an incorrect message and moves to the next question
 // function incorrect(secondsLeft) {
 //   incorrect.setAttribute("style", "display:block");
 //   buttons.setAttribute("style", "display:none");
@@ -140,4 +147,7 @@ startBtn.addEventListener("click", startGame)
 var questionIndex = 0
 var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
 
-// buttons.addEventListener("click", checkAnswer)
+answerA.addEventListener("click", checkAnswer)
+answerB.addEventListener("click", checkAnswer)
+answerC.addEventListener("click", checkAnswer)
+answerD.addEventListener("click", checkAnswer)
