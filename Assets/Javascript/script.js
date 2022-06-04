@@ -7,12 +7,13 @@ var answerD = document.getElementById("D")
 var startBtn = document.getElementById("startBtn")
 var questions = document.querySelector(".questions")
 var intro = document.querySelector(".intro")
-var question = document.getElementById("question")
-var buttons = document.getElementById('buttons')
-var gameOver = document.querySelector('game-over')
-var correct = document.querySelector('correct')
-var incorrect = document.querySelector('incorrect')
-
+var question = document.querySelector("#question")
+var buttons = document.querySelector('#buttons')
+var incorrect = document.querySelector('#incorrect')
+var buttons = document.querySelector('#buttons')
+var gameOver = document.querySelector('#game-over')
+var correct = document.querySelector('#correct')
+var buttons = document.querySelector('#buttons')
 
 // init()
 function startGame() {
@@ -23,8 +24,8 @@ function startGame() {
 }
 
 function setTime() {
-  var secondsLeft = 35
-  var timerInterval = setInterval(function () {
+  secondsLeft = 35
+  timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = "You have " + secondsLeft + " seconds left!";
     if (secondsLeft === 0) {
@@ -36,7 +37,7 @@ function setTime() {
 
 // event listener for start game
 function chooseQ() {
-  const chosenQIndex = Math.floor(Math.random() * questionsArray.length);
+  chosenQIndex = Math.floor(Math.random() * questionsArray.length);
   console.log(chosenQIndex);
   return questionsArray[chosenQIndex];
 }
@@ -57,7 +58,7 @@ function displayQ(chosenQ, chosenQIndex) {
 }
 
 //when questions answered or timer === 0 game over
-function timeUp() {
+function timeUp(gameOver, questions) {
   gameOver.setAttribute("style", "display:block");
   questions.setAttribute("style", "display:none");
   setTimeout(gameOver.setAttribute("style", "display:none"), questions.setAttribute("style", "display:block"), 5000);
@@ -72,11 +73,11 @@ function timeUp() {
 // Displays an incorrect message and moves to the next question
 
 
-function checkAnswer() {
-  console.log(this.dataset.correct);
+function checkAnswer(correct, incorrect, buttons) {
   var checkCorrect = this.dataset.correct;
+  console.log(this.dataset.correct);
   if (checkCorrect === 'true') {
-    correct(checkCorrect);
+    correct(checkCorrect, correct, incorrect, buttons);
     function correct(checkCorrect) {
       correct.setAttribute("style", "display:block");
       buttons.setAttribute("style", "display:none");
@@ -86,7 +87,8 @@ function checkAnswer() {
     }
   } else {
     incorrect(checkCorrect);
-    function incorrect() {
+    function incorrect(incorrect, buttons) {
+
       incorrect.setAttribute("style", "display:block");
       buttons.setAttribute("style", "display:none");
       setTimeout(incorrect.setAttribute("style", "display:none"), buttons.setAttribute("style", "display:block"), 2000);
