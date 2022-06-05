@@ -23,4 +23,5 @@
 
 -Added show/hide functionality to highscores page with user inputs. 
 
+![image](https://user-images.githubusercontent.com/103160909/172038394-9dd15596-c2fb-4989-a2ce-2019e21155c9.png)
 
