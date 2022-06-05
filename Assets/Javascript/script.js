@@ -154,6 +154,7 @@ function displayResult(checkCorrect) {
   displayQ(chooseQ());
   } else {
     result.innerHTML = "Correct!";
+    displayQ(chooseQ());
   return;
 }
 }
