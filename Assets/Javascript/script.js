@@ -12,6 +12,7 @@ var incorrect = document.querySelector('#incorrect')
 var gameOver = document.querySelector('#game-over')
 var correct = document.querySelector('#correct')
 var buttons = document.querySelector('#buttons')
+var secondsLeft = 35
 
 // init()
 function startGame() {
@@ -32,7 +33,7 @@ function setTime() {
       timeUp();
     }
   }, 1000);
-} 
+}
 // if question array empty, win
 //  
 // event listener for start game
@@ -61,10 +62,10 @@ function displayQ(chosenQ, chosenQIndex) {
 function timeUp() {
   questions.className = "hidden";
   gameOver.className = "show";
-  resultTimeout = setTimeout(function() {
+  resultTimeout = setTimeout(function () {
     gameOver.className = "hidden";
     questions.className = "show";
-   }, 5000);
+  }, 5000);
 
   return;
 }
@@ -77,96 +78,105 @@ function timeUp() {
 // Displays an incorrect message and moves to the next question
 
 
-function checkAnswer(correct, incorrect, secondsLeft) {
+function checkAnswer(correct) {
   var checkCorrect = this.dataset.correct;
   console.log(this.dataset.correct);
   if (checkCorrect === 'true') {
     correct();
-    function correct() {
-      questions.className = "hidden";
-      correct.className = "show";
-      corrTimeout = setTimeout(function() {
-        correct.className = "hidden";
-        questions.className = "show"}, 1000);
-      displayQ(chooseQ());
-      return;
-    }
   } else {
     incorrect(checkCorrect);
-    function incorrect() {
-      questions.className = "hidden";
-      incorrect.className = "show";
-      corrTimeout = setTimeout(function() {
-        incorrect.className = "hidden";
-        questions.className = "show"}, 1000);    
-      secondsLeft - 3;
-      displayQ(chooseQ());
-      return;
-    }
+    return;
   }
 }
 
-//Sets each question object including a QUESTION property and A-D SUB-OBJECTS
-const question1 = {
-  Question: "What kind of primitive type refers to a true or false value?",
-  A: { answerText: "Boolean", correct: 'true' },
-  B: { answerText: "Variable", correct: 'false' },
-  C: { answerText: "String", correct: 'false' },
-  D: { answerText: "Number", correct: 'false' }
-};
-
-const question2 = {
-  Question: "What holds a collection of items, referred to by indices?",
-  A: { answerText: "String", correct: 'false' },
-  B: { answerText: "Boolean", correct: 'false' },
-  C: { answerText: "Array", correct: 'true' },
-  D: { answerText: "List", correct: 'false' }
+  function correct() {
+    if (checkCorrect === 'true') {
+    questions.className = "hidden";
+    correct.className = "show";
+    corrTimeout = setTimeout(function () {
+      correct.className = "hidden";
+      questions.className = "show"
+    }, 1000);
+    displayQ(chooseQ());
+    return;
+  }
 }
 
-const question3 = {
-  Question: "What is the term for using JavaScript to access specific parts of the HTML?",
-  A: { answerText: "Third party API", correct: 'false' },
-  B: { answerText: "Traversing the DOM", correct: 'true' },
-  C: { answerText: "Pathing via javascript", correct: 'false' },
-  D: { answerText: "Navigating the HTML", correct: 'false' }
+  function incorrect() {
+    if (checkCorrect !== 'true') {
+    questions.className = "hidden";
+    incorrect.className = "show";
+    incorrTimeout = setTimeout(function () {
+      incorrect.className = "hidden";
+      questions.className = "show"
+    }, 1000);
+    secondsLeft - 3;
+    displayQ(chooseQ());
+    return;
+  }
 }
 
-const question4 = {
-  Question: "What is a section of code that runs repeatedly until conditions are met?",
-  A: { answerText: "Loop", correct: 'true' },
-  B: { answerText: "Object", correct: 'false' },
-  C: { answerText: "Element", correct: 'false' },
-  D: { answerText: "Variable", correct: 'false' }
-}
+  //Sets each question object including a QUESTION property and A-D SUB-OBJECTS
+  const question1 = {
+    Question: "What kind of primitive type refers to a true or false value?",
+    A: { answerText: "Boolean", correct: 'true' },
+    B: { answerText: "Variable", correct: 'false' },
+    C: { answerText: "String", correct: 'false' },
+    D: { answerText: "Number", correct: 'false' }
+  };
 
-const question5 = {
-  Question: "What is used to create an arbitrary name given to a specific piece of information?",
-  A: { answerText: "Variable", correct: 'true' },
-  B: { answerText: "String", correct: 'false' },
-  C: { answerText: "Boolean", correct: 'false' },
-  D: { answerText: "Array", correct: 'false' }
-}
+  const question2 = {
+    Question: "What holds a collection of items, referred to by indices?",
+    A: { answerText: "String", correct: 'false' },
+    B: { answerText: "Boolean", correct: 'false' },
+    C: { answerText: "Array", correct: 'true' },
+    D: { answerText: "List", correct: 'false' }
+  }
 
-const question6 = {
-  Question: "What allows elements within HTML to arrange themselves according to element size and space in a parent element?",
-  A: { answerText: "Flow-square", correct: 'false' },
-  B: { answerText: "Justify-content", correct: 'false' },
-  C: { answerText: "Media-query", correct: 'false' },
-  D: { answerText: "Flex-box", correct: 'true' }
-}
+  const question3 = {
+    Question: "What is the term for using JavaScript to access specific parts of the HTML?",
+    A: { answerText: "Third party API", correct: 'false' },
+    B: { answerText: "Traversing the DOM", correct: 'true' },
+    C: { answerText: "Pathing via javascript", correct: 'false' },
+    D: { answerText: "Navigating the HTML", correct: 'false' }
+  }
 
-const question7 = {
-  Question: "What is it called when an app rescales according to screen size?",
-  A: { answerText: "Scaling Design", correct: 'false' },
-  B: { answerText: "Media Rescaling", correct: 'false' },
-  C: { answerText: "Responsive Design", correct: 'true' },
-  D: { answerText: "Screen resizing", correct: 'false' }
-}
-var questionIndex = 0
-var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
+  const question4 = {
+    Question: "What is a section of code that runs repeatedly until conditions are met?",
+    A: { answerText: "Loop", correct: 'true' },
+    B: { answerText: "Object", correct: 'false' },
+    C: { answerText: "Element", correct: 'false' },
+    D: { answerText: "Variable", correct: 'false' }
+  }
 
-startBtn.addEventListener("click", startGame)
-answerA.addEventListener("click", checkAnswer)
-answerB.addEventListener("click", checkAnswer)
-answerC.addEventListener("click", checkAnswer)
-answerD.addEventListener("click", checkAnswer)
+  const question5 = {
+    Question: "What is used to create an arbitrary name given to a specific piece of information?",
+    A: { answerText: "Variable", correct: 'true' },
+    B: { answerText: "String", correct: 'false' },
+    C: { answerText: "Boolean", correct: 'false' },
+    D: { answerText: "Array", correct: 'false' }
+  }
+
+  const question6 = {
+    Question: "What allows elements within HTML to arrange themselves according to element size and space in a parent element?",
+    A: { answerText: "Flow-square", correct: 'false' },
+    B: { answerText: "Justify-content", correct: 'false' },
+    C: { answerText: "Media-query", correct: 'false' },
+    D: { answerText: "Flex-box", correct: 'true' }
+  }
+
+  const question7 = {
+    Question: "What is it called when an app rescales according to screen size?",
+    A: { answerText: "Scaling Design", correct: 'false' },
+    B: { answerText: "Media Rescaling", correct: 'false' },
+    C: { answerText: "Responsive Design", correct: 'true' },
+    D: { answerText: "Screen resizing", correct: 'false' }
+  }
+  var questionIndex = 0
+  var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
+
+  startBtn.addEventListener("click", startGame)
+  answerA.addEventListener("click", checkAnswer)
+  answerB.addEventListener("click", checkAnswer)
+  answerC.addEventListener("click", checkAnswer)
+  answerD.addEventListener("click", checkAnswer)
