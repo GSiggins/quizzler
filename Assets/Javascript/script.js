@@ -124,18 +124,19 @@ function timeUp() {
   questions.className = "hidden";
   gameOver.className = "show";
   resultTimeout = setTimeout(function () {
-  highscores.classname = "show"; 
+    highscores.classname = "show";
   }, 5000);
   return;
 }
 
 // Displays a correct message and moves to the next question
-function checkAnswer(checkCorrect) {
+function checkAnswer() {
   var checkCorrect = this.dataset.correct;
   console.log(this.dataset.correct);
-    displayResult();
-    return checkCorrect;
-  }
+  console.log(checkCorrect);
+  displayResult();
+  return checkCorrect;
+}
 
 // Displays an correct message and moves to the next question
 // function answerCorrect(checkCorrect) {
@@ -147,26 +148,26 @@ function checkAnswer(checkCorrect) {
 // }
 
 //Display an incorrect message and moves to the next question
-function displayResult(checkCorrect) {
-  if (checkCorrect !== 'true') {
-  result.innerHTML = "Incorrect!";
-  secondsLeft - 3;
-  displayQ(chooseQ());
-  } else {
+function displayResult(checkAnswer) {
+  if (checkAnswer === 'true') {
     result.innerHTML = "Correct!";
     displayQ(chooseQ());
+  } else {
+    result.innerHTML = "Incorrect!";
+    displayQ(chooseQ());
+    secondsLeft - 3;
+  }
   return;
 }
-}
 
 
 
-  //Sets each question object including a QUESTION property and A-D SUB-OBJECTS
-  
+//Sets each question object including a QUESTION property and A-D SUB-OBJECTS
 
 
-  startBtn.addEventListener("click", startGame)
-  answerA.addEventListener("click", checkAnswer)
-  answerB.addEventListener("click", checkAnswer)
-  answerC.addEventListener("click", checkAnswer)
-  answerD.addEventListener("click", checkAnswer)
+
+startBtn.addEventListener("click", startGame)
+answerA.addEventListener("click", checkAnswer)
+answerB.addEventListener("click", checkAnswer)
+answerC.addEventListener("click", checkAnswer)
+answerD.addEventListener("click", checkAnswer)
