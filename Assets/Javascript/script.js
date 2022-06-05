@@ -57,10 +57,14 @@ function displayQ(chosenQ, chosenQIndex) {
 }
 
 //when questions answered or timer === 0 game over
-function timeUp(gameOver, questions) {
-  document.getElementById('game-over').style.display = 'block';
+function timeUp() {
+  document.querySelector('#game-over').style.display = 'block';
   document.querySelector(".questions").style.display = 'none';
-  setTimeout(document.getElementById('game-over').style.display = 'none', document.querySelector(".questions").style.display = 'block', 5000);
+  resultTimeout = setTimeout(function() {
+    document.getElementById('game-over').style.display = 'none'
+    document.querySelector(".questions").style.display = 'block'
+   }, 5000);
+
   return;
 }
 
@@ -72,24 +76,24 @@ function timeUp(gameOver, questions) {
 // Displays an incorrect message and moves to the next question
 
 
-function checkAnswer(correct, incorrect, buttons) {
+function checkAnswer(correct, incorrect, secondsLeft) {
   var checkCorrect = this.dataset.correct;
   console.log(this.dataset.correct);
   if (checkCorrect === 'true') {
     correct();
     function correct() {
-      document.getElementById('correct').style.display = 'block';
+      document.querySelector('#correct').style.display = 'block';
       document.querySelector(".questions").style.display = 'none';
-      setTimeout(document.getElementById('correct').style.display = 'none', document.querySelector(".questions").style.display = 'block', 2000);
+      corrTimeout = setTimeout(function() {document.querySelector('#correct').style.display = 'none', document.querySelector(".questions").style.display = 'block'}, 1000);
       displayQ(chooseQ());
       return;
     }
   } else {
     incorrect(checkCorrect);
     function incorrect() {
-      document.getElementById('incorrect').style.display = 'block';
+      document.querySelector('#incorrect').style.display = 'block';
       document.querySelector(".questions").style.display = 'none';
-      setTimeout(document.getElementById('incorrect').style.display = 'none', document.querySelector(".questions").style.display = 'block', 2000);
+      incorTimeout = setTimeout(function() {document.querySelector('#incorrect').style.display = 'none', document.querySelector(".questions").style.display = 'block'}, 1000);     
       secondsLeft - 3;
       displayQ(chooseQ());
       return;
@@ -97,7 +101,7 @@ function checkAnswer(correct, incorrect, buttons) {
   }
 }
 
-
+//Sets each question object including a QUESTION property and A-D SUB-OBJECTS
 const question1 = {
   Question: "What kind of primitive type refers to a true or false value?",
   A: { answerText: "Boolean", correct: 'true' },
