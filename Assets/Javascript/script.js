@@ -13,6 +13,8 @@ var buttons = document.querySelector('#buttons')
 var result = document.getElementById('result')
 var secondsLeft = 35
 var questionIndex = 0
+
+//Sets each question object including a QUESTION property and A-D SUB-OBJECTS
 const question1 = {
   Question: "What kind of primitive type refers to a true or false value?",
   A: { answerText: "Boolean", correct: 'true' },
@@ -70,7 +72,8 @@ const question7 = {
 }
 var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
 
-// init()
+//starts game by hiding the intro screen and starting the timer, 
+//then choosing and displaying the first question.
 function startGame() {
   console.log(questionsArray)
   intro.className = "hidden";
@@ -79,6 +82,8 @@ function startGame() {
   displayQ(chooseQ());
 }
 
+
+//sets condition if time runs out or if the player exhausts the questions array
 function setTime() {
   secondsLeft = 35
   timerInterval = setInterval(function () {
@@ -88,20 +93,17 @@ function setTime() {
       clearInterval(timerInterval);
       timeUp();
     }
+    else if (questionsArray === undefined) {
+      winScreen();
+    }
   }, 1000);
 }
 
-// function winGame(questionsArray) {
-//   if (questionsArray === undefined) {
-
-//   }
-// }
-
 // event listener for start game
-function chooseQ() {
+function chooseQ(chosenQIndex) {
   chosenQIndex = Math.floor(Math.random() * questionsArray.length);
   console.log(chosenQIndex);
-  return questionsArray[chosenQIndex];
+  displayQ(questionsArray[chosenQIndex]);
 }
 
 function displayQ(chosenQ, chosenQIndex) {
@@ -115,17 +117,36 @@ function displayQ(chosenQ, chosenQIndex) {
   answerC.dataset.correct = chosenQ.C.correct;
   answerD.textContent = chosenQ.D.answerText;
   answerD.dataset.correct = chosenQ.D.correct;
+  console.log(chosenQIndex)
   questionsArray.splice(chosenQIndex, 1);
   console.log(questionsArray);
 }
 
-//when questions answered or timer === 0 game over
+//displays a game over screen if the player runs out of time
 function timeUp() {
   questions.className = "hidden";
   gameOver.className = "show";
   resultTimeout = setTimeout(function () {
     highscores.classname = "show";
   }, 5000);
+  return;
+}
+
+//shows a YOU WIN dialogue if the player exhausts the questions array (answers all questions)
+function winScreen() {
+  questions.className = "hidden";
+  winGame.className = "show";
+  resultTimeout = setTimeout(function () {
+    highscores.classname = "show";
+  }, 5000);
+  highscoreScreen();
+  return;
+}
+
+//displays the highscore Screen and saves inputs to localstorage
+function highscoreScreen() {
+  questions.className = "hidden";
+  highscores.className = "show";
   return;
 }
 
@@ -150,12 +171,6 @@ function displayResult(checkCorrect) {
   }
   return;
 }
-
-
-
-//Sets each question object including a QUESTION property and A-D SUB-OBJECTS
-
-
 
 startBtn.addEventListener("click", startGame)
 answerA.addEventListener("click", checkAnswer)
