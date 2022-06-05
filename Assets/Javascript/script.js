@@ -15,6 +15,7 @@ var buttons = document.querySelector('#buttons')
 
 // init()
 function startGame() {
+  console.log(questionsArray)
   intro.className = "hidden";
   questions.className = "show";
   setTime();
@@ -161,12 +162,10 @@ const question7 = {
   C: { answerText: "Responsive Design", correct: 'true' },
   D: { answerText: "Screen resizing", correct: 'false' }
 }
-
-startBtn.addEventListener("click", startGame)
-
 var questionIndex = 0
 var questionsArray = [question1, question2, question3, question4, question5, question6, question7]
 
+startBtn.addEventListener("click", startGame)
 answerA.addEventListener("click", checkAnswer)
 answerB.addEventListener("click", checkAnswer)
 answerC.addEventListener("click", checkAnswer)
