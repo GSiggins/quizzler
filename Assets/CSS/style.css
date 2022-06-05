@@ -68,7 +68,16 @@ p {
     padding: 30px;
 }
 
+
 h3 {
+    font-size: 36px;
+    min-width: 20%;
+    min-height: 30px;
+    border: 1px solid black;
+}
+
+
+h4 {
     font-size: 96px;
     text-align: center;
 }
