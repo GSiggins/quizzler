@@ -134,28 +134,19 @@ function checkAnswer() {
   var checkCorrect = this.dataset.correct;
   console.log(this.dataset.correct);
   console.log(checkCorrect);
-  displayResult();
-  return checkCorrect;
+  displayResult(checkCorrect);
 }
 
-// Displays an correct message and moves to the next question
-// function answerCorrect(checkCorrect) {
-//   if (checkCorrect) {
-//   result.textContent = "Correct!";
-//   displayQ(chooseQ());
-//   return;
-// }
-// }
 
 //Display an incorrect message and moves to the next question
-function displayResult(checkAnswer) {
-  if (checkAnswer === 'true') {
+function displayResult(checkCorrect) {
+  if (checkCorrect === 'true') {
     result.innerHTML = "Correct!";
     displayQ(chooseQ());
   } else {
     result.innerHTML = "Incorrect!";
-    displayQ(chooseQ());
     secondsLeft - 3;
+    displayQ(chooseQ());
   }
   return;
 }
@@ -171,3 +162,13 @@ answerA.addEventListener("click", checkAnswer)
 answerB.addEventListener("click", checkAnswer)
 answerC.addEventListener("click", checkAnswer)
 answerD.addEventListener("click", checkAnswer)
+
+
+// Displays an correct message and moves to the next question
+// function answerCorrect(checkCorrect) {
+//   if (checkCorrect) {
+//   result.textContent = "Correct!";
+//   displayQ(chooseQ());
+//   return;
+// }
+// }
