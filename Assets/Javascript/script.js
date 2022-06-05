@@ -90,8 +90,13 @@ function setTime() {
     }
   }, 1000);
 }
-// if question array empty, win
-//  
+
+// function winGame(questionsArray) {
+//   if (questionsArray === undefined) {
+
+//   }
+// }
+
 // event listener for start game
 function chooseQ() {
   chosenQIndex = Math.floor(Math.random() * questionsArray.length);
@@ -125,37 +130,35 @@ function timeUp() {
 }
 
 // Displays a correct message and moves to the next question
-
-
-// Displays an correct message and moves to the next question
-function answerCorrect(checkCorrect) {
-  if (checkCorrect === 'true') {
-  result.textContent = "Correct!";
-  displayQ(chooseQ());
-  return;
-}
-}
-
-//Display an incorrect message and moves to the next question
-function answerIncorrect(checkCorrect) {
-  if (checkCorrect !== 'true') {
-  result.textContent = "Incorrect!"
-  secondsLeft - 3;
-  displayQ(chooseQ());
-  return;
-}
-}
-
 function checkAnswer(checkCorrect) {
   var checkCorrect = this.dataset.correct;
   console.log(this.dataset.correct);
-  if (checkCorrect === 'true') {
-    answerCorrect();
-  } else {
-    answerIncorrect(checkCorrect);
+    displayResult();
     return checkCorrect;
   }
+
+// Displays an correct message and moves to the next question
+// function answerCorrect(checkCorrect) {
+//   if (checkCorrect) {
+//   result.textContent = "Correct!";
+//   displayQ(chooseQ());
+//   return;
+// }
+// }
+
+//Display an incorrect message and moves to the next question
+function displayResult(checkCorrect) {
+  if (checkCorrect !== 'true') {
+  result.innerHTML = "Incorrect!";
+  secondsLeft - 3;
+  displayQ(chooseQ());
+  } else {
+    result.innerHTML = "Correct!";
+  return;
 }
+}
+
+
 
   //Sets each question object including a QUESTION property and A-D SUB-OBJECTS
   
