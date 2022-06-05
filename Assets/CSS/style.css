@@ -70,7 +70,6 @@ p {
 
 h3 {
     font-size: 96px;
-    display: none;
     text-align: center;
 }
 
@@ -91,8 +90,12 @@ button:active {
     margin-bottom: 100px;
 }
 
-.questions {
+.hidden {
     display: none;
+}
+
+.show {
+    display: block;
 }
 
 #timer {
@@ -128,8 +131,3 @@ button:active {
     text-align: center;
 }
 
-#incorrect,
-#correct,
-#game-over {
-    display: none;
-}

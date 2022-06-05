@@ -5,18 +5,18 @@ var answerB = document.getElementById("B")
 var answerC = document.getElementById("C")
 var answerD = document.getElementById("D")
 var startBtn = document.getElementById("startBtn")
-var questions = document.querySelector(".questions")
-var intro = document.querySelector(".intro")
+var questions = document.querySelector("#questionsBox")
+var intro = document.querySelector("#intro")
 var question = document.querySelector("#question")
-var incorrect = document.getElementById('incorrect')
-var gameOver = document.getElementById('game-over')
-var correct = document.getElementById('correct')
-var buttons = document.getElementById('buttons')
+var incorrect = document.querySelector('#incorrect')
+var gameOver = document.querySelector('#game-over')
+var correct = document.querySelector('#correct')
+var buttons = document.querySelector('#buttons')
 
 // init()
 function startGame() {
-  document.querySelector(".questions").style.display = 'block';
-  document.querySelector("#intro").style.display = 'none';
+  intro.className = "hidden";
+  questions.className = "show";
   setTime();
   displayQ(chooseQ());
 }
@@ -58,11 +58,11 @@ function displayQ(chosenQ, chosenQIndex) {
 
 //when questions answered or timer === 0 game over
 function timeUp() {
-  document.querySelector('#game-over').style.display = 'block';
-  document.querySelector(".questions").style.display = 'none';
+  questions.className = "hidden";
+  gameOver.className = "show";
   resultTimeout = setTimeout(function() {
-    document.getElementById('game-over').style.display = 'none'
-    document.querySelector(".questions").style.display = 'block'
+    gameOver.className = "hidden";
+    questions.className = "show";
    }, 5000);
 
   return;
@@ -82,18 +82,22 @@ function checkAnswer(correct, incorrect, secondsLeft) {
   if (checkCorrect === 'true') {
     correct();
     function correct() {
-      document.querySelector('#correct').style.display = 'block';
-      document.querySelector(".questions").style.display = 'none';
-      corrTimeout = setTimeout(function() {document.querySelector('#correct').style.display = 'none', document.querySelector(".questions").style.display = 'block'}, 1000);
+      questions.className = "hidden";
+      correct.className = "show";
+      corrTimeout = setTimeout(function() {
+        correct.className = "hidden";
+        questions.className = "show"}, 1000);
       displayQ(chooseQ());
       return;
     }
   } else {
     incorrect(checkCorrect);
     function incorrect() {
-      document.querySelector('#incorrect').style.display = 'block';
-      document.querySelector(".questions").style.display = 'none';
-      incorTimeout = setTimeout(function() {document.querySelector('#incorrect').style.display = 'none', document.querySelector(".questions").style.display = 'block'}, 1000);     
+      questions.className = "hidden";
+      incorrect.className = "show";
+      corrTimeout = setTimeout(function() {
+        incorrect.className = "hidden";
+        questions.className = "show"}, 1000);    
       secondsLeft - 3;
       displayQ(chooseQ());
       return;
