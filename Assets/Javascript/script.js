@@ -117,8 +117,8 @@ function displayQ(chosenQ, chosenQIndex) {
   answerC.dataset.correct = chosenQ.C.correct;
   answerD.textContent = chosenQ.D.answerText;
   answerD.dataset.correct = chosenQ.D.correct;
-  console.log(chosenQIndex)
-  questionsArray.splice(chosenQIndex, 1);
+  console.log([chosenQIndex])
+  questionsArray.splice([chosenQIndex], 1);
   console.log(questionsArray);
 }
 
