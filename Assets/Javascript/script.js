@@ -31,8 +31,9 @@ function setTime() {
       timeUp();
     }
   }, 1000);
-}
-
+} 
+// if question array empty, win
+//  
 // event listener for start game
 function chooseQ() {
   chosenQIndex = Math.floor(Math.random() * questionsArray.length);
