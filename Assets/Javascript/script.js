@@ -12,8 +12,8 @@ var gameOver = document.querySelector('#game-over')
 var buttons = document.querySelector('#buttons')
 var result = document.getElementById('result')
 var winner = document.querySelector('#winScreen')
-var highscorePage = document.getElementById('highscore-page')
-var secondsLeft = 15
+var highscorePage = document.querySelector('.highscore-page')
+var secondsLeft
 var questionIndex = 0
 
 //Sets each question object including a QUESTION property and A-D SUB-OBJECTS
@@ -87,7 +87,7 @@ function startGame() {
 
 //sets condition if time runs out or if the player exhausts the questions array
 function setTime() {
-  secondsLeft = 15
+  secondsLeft = 25
   timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = "You have " + secondsLeft + " seconds left!";
@@ -101,6 +101,10 @@ function setTime() {
 
 // event listener for start game
 function chooseQ() {
+  if (questionsArray.length === 0) {
+    winScreen(); 
+    return;
+  }
   chosenQIndex = Math.floor(Math.random() * questionsArray.length);
   console.log("The index of the question chosen was " + chosenQIndex);
   // displayQ(questionsArray[chosenQIndex]);
@@ -108,7 +112,6 @@ function chooseQ() {
 }
 
 function displayQ(chosenQ) {
-  // const qArray = Object.values(chosenQ);
   console.log("showing index " + chosenQIndex)
   question.textContent = chosenQ.Question;
   answerA.textContent = chosenQ.A.answerText;
@@ -121,28 +124,27 @@ function displayQ(chosenQ) {
   answerD.dataset.correct = chosenQ.D.correct;
   questionsArray.splice(chosenQIndex, 1);
   console.log(questionsArray);
-}
-if (questionsArray.length === 0) {
-  winScreen();
-}
+  }
+
+
 
 // Displays a correct message and moves to the next question
 function checkAnswer() {
   var checkCorrect = this.dataset.correct;
   console.log(this.dataset.correct);
   console.log(checkCorrect);
-  displayResult(checkCorrect, secondsLeft);
+  displayResult(checkCorrect);
 }
 
 //Display an incorrect message and moves to the next question
-function displayResult(checkCorrect, secondsLeft) {
+function displayResult(checkCorrect) {
   if (checkCorrect === 'true') {
     result.innerHTML = "Correct!";
     displayQ(chooseQ());
   } else {
     result.innerHTML = "Incorrect!";
-    secondsLeft = +document.getElementById("timer").value
     secondsLeft -= 3;
+    console.log(secondsLeft)
     displayQ(chooseQ());
   }
   return;
@@ -154,7 +156,7 @@ function timeUp() {
   questions.className = "hidden";
   gameOver.className = "show";
   resultTimeout = setTimeout(function () {
-    highscorePage.className = "show";
+  highscorePage.className = "show";
   }, 5000);
   return;
 }
@@ -164,10 +166,11 @@ function timeUp() {
 function winScreen() {
   questions.className = "hidden";
   winner.className = "show";
+  clearInterval(timerInterval);
   resultTimeout = setTimeout(function () {
-    highscorePage.className = "show";
+    highscoreScreen();
+    winner.className = "hidden";
   }, 5000);
-  highscoreScreen();
   return;
 }
 

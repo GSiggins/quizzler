@@ -114,6 +114,9 @@ button,
     display: block;
 }
 
+.highscore-page {
+    font-size: 48px;
+}
 #result {
     font-style: italic;
     font-size: 36px;
