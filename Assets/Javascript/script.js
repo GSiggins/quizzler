@@ -11,7 +11,9 @@ var question = document.querySelector("#question")
 var gameOver = document.querySelector('#game-over')
 var buttons = document.querySelector('#buttons')
 var result = document.getElementById('result')
-var secondsLeft = 35
+var winner = document.querySelector('#winScreen')
+var highscorePage = document.getElementById('highscore-page')
+var secondsLeft = 15
 var questionIndex = 0
 
 //Sets each question object including a QUESTION property and A-D SUB-OBJECTS
@@ -85,7 +87,7 @@ function startGame() {
 
 //sets condition if time runs out or if the player exhausts the questions array
 function setTime() {
-  secondsLeft = 35
+  secondsLeft = 15
   timerInterval = setInterval(function () {
     secondsLeft--;
     timeEl.textContent = "You have " + secondsLeft + " seconds left!";
@@ -93,21 +95,21 @@ function setTime() {
       clearInterval(timerInterval);
       timeUp();
     }
-    else if (questionsArray === undefined) {
-      winScreen();
-    }
   }, 1000);
+  return secondsLeft;
 }
 
 // event listener for start game
-function chooseQ(chosenQIndex) {
+function chooseQ() {
   chosenQIndex = Math.floor(Math.random() * questionsArray.length);
-  console.log(chosenQIndex);
-  displayQ(questionsArray[chosenQIndex]);
+  console.log("The index of the question chosen was " + chosenQIndex);
+  // displayQ(questionsArray[chosenQIndex]);
+  return questionsArray[chosenQIndex];
 }
 
-function displayQ(chosenQ, chosenQIndex) {
+function displayQ(chosenQ) {
   // const qArray = Object.values(chosenQ);
+  console.log("showing index " + chosenQIndex)
   question.textContent = chosenQ.Question;
   answerA.textContent = chosenQ.A.answerText;
   answerA.dataset.correct = chosenQ.A.correct;
@@ -117,37 +119,11 @@ function displayQ(chosenQ, chosenQIndex) {
   answerC.dataset.correct = chosenQ.C.correct;
   answerD.textContent = chosenQ.D.answerText;
   answerD.dataset.correct = chosenQ.D.correct;
-  console.log([chosenQIndex])
-  questionsArray.splice([chosenQIndex], 1);
+  questionsArray.splice(chosenQIndex, 1);
   console.log(questionsArray);
 }
-
-//displays a game over screen if the player runs out of time
-function timeUp() {
-  questions.className = "hidden";
-  gameOver.className = "show";
-  resultTimeout = setTimeout(function () {
-    highscores.classname = "show";
-  }, 5000);
-  return;
-}
-
-//shows a YOU WIN dialogue if the player exhausts the questions array (answers all questions)
-function winScreen() {
-  questions.className = "hidden";
-  winGame.className = "show";
-  resultTimeout = setTimeout(function () {
-    highscores.classname = "show";
-  }, 5000);
-  highscoreScreen();
-  return;
-}
-
-//displays the highscore Screen and saves inputs to localstorage
-function highscoreScreen() {
-  questions.className = "hidden";
-  highscores.className = "show";
-  return;
+if (questionsArray.length === 0) {
+  winScreen();
 }
 
 // Displays a correct message and moves to the next question
@@ -155,20 +131,51 @@ function checkAnswer() {
   var checkCorrect = this.dataset.correct;
   console.log(this.dataset.correct);
   console.log(checkCorrect);
-  displayResult(checkCorrect);
+  displayResult(checkCorrect, secondsLeft);
 }
 
-
 //Display an incorrect message and moves to the next question
-function displayResult(checkCorrect) {
+function displayResult(checkCorrect, secondsLeft) {
   if (checkCorrect === 'true') {
     result.innerHTML = "Correct!";
     displayQ(chooseQ());
   } else {
     result.innerHTML = "Incorrect!";
-    secondsLeft - 3;
+    secondsLeft = +document.getElementById("timer").value
+    secondsLeft -= 3;
     displayQ(chooseQ());
   }
+  return;
+}
+
+
+//displays a game over screen if the player runs out of time
+function timeUp() {
+  questions.className = "hidden";
+  gameOver.className = "show";
+  resultTimeout = setTimeout(function () {
+    highscorePage.className = "show";
+  }, 5000);
+  return;
+}
+
+
+//shows a YOU WIN dialogue if the player exhausts the questions array (answers all questions)
+function winScreen() {
+  questions.className = "hidden";
+  winner.className = "show";
+  resultTimeout = setTimeout(function () {
+    highscorePage.className = "show";
+  }, 5000);
+  highscoreScreen();
+  return;
+}
+
+
+//displays the highscore Screen and saves inputs to localstorage
+function highscoreScreen() {
+  questions.className = "hidden";
+  highscorePage.className = "show";
   return;
 }
 
